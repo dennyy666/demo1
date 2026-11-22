@@ -9,8 +9,8 @@
     <el-sub-menu index="1">
       <template #title>首页配置</template>
       <el-menu-item index="/layout/homeConfiguration/heroManage">英雄管理</el-menu-item>
-      <el-menu-item index="1-3" @click="baidu">百度一下啦</el-menu-item>
-      <el-menu-item index="1-4" @click="jumpNotFound">404 页面</el-menu-item>
+      <el-menu-item index="" @click="baidu">百度一下啦</el-menu-item>
+      <el-menu-item index="" @click="jumpNotFound">404 页面</el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="2">
       <template #title>表单管理</template>
