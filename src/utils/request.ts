@@ -26,8 +26,10 @@ service.interceptors.request.use(
       config.headers['Authorization'] = `Bearer ${token}`
     }
 
-    // 其他公共 headers
-    config.headers['Content-Type'] = 'application/json'
+    // 只在调用方没指定 Content-Type 时才给默认值
+    if (!config.headers['Content-Type']) {
+      config.headers['Content-Type'] = 'application/json'
+    }
 
     return config
   },
