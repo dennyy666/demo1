@@ -94,11 +94,12 @@ const performLogin = async (account: string, _password = '123456') => {
     http.get('static/login.json', {
         name: 'denny',
         password: 123456
-    }).then(response => {
-        console.log('登录响应:', response)
-        useUserStore().setUser({ name: user.name, avatar: user.avatar, address: user.address, phone: user.phone })
+    }).then((res: any) => {
+        console.log('登录响应:', res)
+        const selectUser = res.find((u: { name: string }) => u.name === account)
+        useUserStore().setUser({ name: selectUser.name, avatar: selectUser.avatar, address: selectUser.address, phone: selectUser.phone })
         router.push('/layout')
-        ElMessage.success(`登录成功，欢迎 ${user.name}！`)
+        ElMessage.success(`登录成功，欢迎 ${selectUser.name}！`)
     }).catch(error => {
         ElMessage.error('登录失败，请检查网络或服务器')
     })
