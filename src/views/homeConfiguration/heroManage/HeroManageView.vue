@@ -46,7 +46,7 @@
                 <el-input v-model="form.name" placeholder="请输入姓名" maxlength="4" clearable />
             </el-form-item>
             <el-form-item label="手机号" prop="mobile">
-                <el-input v-model="form.mobile" placeholder="请输入手机号" maxlength="11" v-number clearable />
+                <el-input v-model="form.mobile" placeholder="请输入手机号" maxlength="11" clearable />
             </el-form-item>
             <el-form-item label="角色" prop="role">
                 <el-select v-model="form.role" placeholder="请选择角色" clearable>
@@ -106,8 +106,8 @@ interface HeroItem {
 }
 // 下拉选项通用类型
 interface SelectOption {
-  label: string
-  value: number
+    label: string
+    value: number
 }
 // ========== 常量 ==========
 const HERO_STORAGE_KEY = 'hero_data'; // localStorage 中保存英雄数据的键名
