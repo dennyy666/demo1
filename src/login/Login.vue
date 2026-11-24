@@ -42,10 +42,11 @@
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { http } from "@/utils/request";
 const router = useRouter()
+const route = useRoute()
 interface LoginForm {
     account: string
     password: string
@@ -99,7 +100,8 @@ const performLogin = async (account: string, _password = '123456') => {
         const selectUser = res.find((u: { username: string }) => u.username === account)
         useUserStore().setUser({ name: selectUser.username, avatar: selectUser.avatar, address: selectUser.address, phone: selectUser.phone })
         localStorage.setItem('auth_token', selectUser.token)
-        router.push('/layout')
+        const redirect = (route.query.redirect as string) || '/'
+        router.replace(redirect)
         ElMessage.success(`登录成功，欢迎 ${selectUser.username}！`)
     }).catch(error => {
         console.error('登录失败:', error)
