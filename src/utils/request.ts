@@ -21,7 +21,7 @@ service.interceptors.request.use(
     }
 
     // 添加 Token
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('auth_token')
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`
     }
@@ -63,7 +63,7 @@ service.interceptors.response.use(
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        localStorage.removeItem('token')
+        localStorage.removeItem('auth_token')
         window.location.href = '/login'
       })
       return Promise.reject(new Error('未授权'))
