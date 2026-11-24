@@ -54,6 +54,7 @@ const loginOut = async () => {
             cancelButtonText: '否',
             type: 'warning',
         })
+        localStorage.removeItem('auth_token')
         await router.push('/login')
         ElMessage.success('退出登录成功')
     } catch {
