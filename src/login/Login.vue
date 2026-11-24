@@ -98,6 +98,7 @@ const performLogin = async (account: string, _password = '123456') => {
         console.log('登录响应:', res)
         const selectUser = res.find((u: { name: string }) => u.name === account)
         useUserStore().setUser({ name: selectUser.name, avatar: selectUser.avatar, address: selectUser.address, phone: selectUser.phone })
+        localStorage.setItem('auth_token', selectUser.token)
         router.push('/layout')
         ElMessage.success(`登录成功，欢迎 ${selectUser.name}！`)
     }).catch(error => {
