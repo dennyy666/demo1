@@ -96,12 +96,13 @@ const performLogin = async (account: string, _password = '123456') => {
         password: 123456
     }).then((res: any) => {
         console.log('登录响应:', res)
-        const selectUser = res.find((u: { name: string }) => u.name === account)
-        useUserStore().setUser({ name: selectUser.name, avatar: selectUser.avatar, address: selectUser.address, phone: selectUser.phone })
+        const selectUser = res.find((u: { username: string }) => u.username === account)
+        useUserStore().setUser({ name: selectUser.username, avatar: selectUser.avatar, address: selectUser.address, phone: selectUser.phone })
         localStorage.setItem('auth_token', selectUser.token)
         router.push('/layout')
-        ElMessage.success(`登录成功，欢迎 ${selectUser.name}！`)
+        ElMessage.success(`登录成功，欢迎 ${selectUser.username}！`)
     }).catch(error => {
+        console.error('登录失败:', error)
         ElMessage.error('登录失败，请检查网络或服务器')
     })
 }
