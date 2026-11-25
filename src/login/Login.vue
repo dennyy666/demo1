@@ -100,7 +100,7 @@ const performLogin = async (account: string, _password = '123456') => {
         const selectUser = res.find((u: { username: string }) => u.username === account)
         useUserStore().setUser({ name: selectUser.username, avatar: selectUser.avatar, address: selectUser.address, phone: selectUser.phone })
         localStorage.setItem('auth_token', selectUser.token)
-        const redirect = (route.query.redirect as string) || '/'
+        const redirect = (route.query.redirect as string) || '/layout'
         router.replace(redirect)
         ElMessage.success(`登录成功，欢迎 ${selectUser.username}！`)
     }).catch(error => {
